@@ -51,5 +51,23 @@
   </section>
 
   <script src="script.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const music = document.getElementById('bg-music');
+    function startMusic() {
+      music.play().catch((e) => {
+        console.log('Autoplay failed:', e);
+      });
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+    }
+
+    // Play music after any user interaction (tap or click)
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+  });
+</script>
+  
 </body>
 </html>
