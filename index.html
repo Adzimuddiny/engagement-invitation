@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John & Partner - Engagement Invitation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <audio autoplay loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="hero">
+    <h1>You're Invited to Our Engagement</h1>
+    <p>Merisik & Bertunang</p>
+  </section>
+
+  <section class="tentative">
+    <h2>Tentative</h2>
+    <ul>
+      <li>11:00 AM - Ketibaan keluarga pihak lelaki</li>
+      <li>11:30 AM - Sesi merisik</li>
+      <li>12:00 PM - Majlis pertunangan</li>
+      <li>12:30 PM - Jamuan makan</li>
+    </ul>
+  </section>
+
+  <section class="greetings">
+    <h2>Leave Your Wishes</h2>
+    <input type="text" id="wishInput" placeholder="Your message here...">
+    <button onclick="addWish()">Submit</button>
+    <ul id="wishList"></ul>
+  </section>
+
+  <section class="location">
+    <h2>Location</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <a href="https://waze.com/ul?ll=LAT,LNG&navigate=yes" target="_blank">Open in Waze</a>
+  </section>
+
+  <section class="duaa">
+    <h2>Doa & Surah</h2>
+    <p>"رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا"</p>
+    <p>Surah Al-Furqan (25:74)</p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
