@@ -63,9 +63,7 @@
       document.removeEventListener('touchstart', startMusic);
     }
 
-    // Play music after any user interaction (tap or click)
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
+    startMusic();
   });
 </script>
   
