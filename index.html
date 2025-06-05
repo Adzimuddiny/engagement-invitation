@@ -8,12 +8,10 @@
 </head>
 <body>
 
-  <audio id="bg-music" loop>
-    <source src="assets/music.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="bg-music" src="assets/music.mp3" loop preload="auto"></audio>
 
-  <button id="music-control" class="music-btn" style="display: none;">
-    🔊 Music Playing
+  <button id="music-control" class="music-btn">
+    🔇 Enable Music
   </button>
   
   <section class="hero">
@@ -40,7 +38,7 @@
 
   <section class="location">
     <h2>Location</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <!-- <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
     <a href="https://waze.com/ul?ll=LAT,LNG&navigate=yes" target="_blank">Open in Waze</a>
   </section>
 
@@ -53,40 +51,36 @@
   <script src="script.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  window.onload = function() {
     const music = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-control');
+    let isPlaying = false;
 
-    // Function to start playing music
-    function playMusic() {
-      music.play().then(() => {
-        musicBtn.innerHTML = '🔊 Music Playing';
-        musicBtn.style.display = 'none';
-      }).catch(e => {
-        console.log('Autoplay failed:', e);
-        // If autoplay fails, show the button to allow manual play
-        musicBtn.style.display = 'block';
-        musicBtn.innerHTML = '🔇 Click to Play Music';
-        
-        // Add click handler for manual play
-        musicBtn.addEventListener('click', function() {
-          music.play().then(() => {
-            musicBtn.style.display = 'none';
-          }).catch(e => console.log('Manual play failed:', e));
+    function initAudio() {
+      if (!isPlaying) {
+        music.play().then(() => {
+          isPlaying = true;
+          musicBtn.innerHTML = '🔊 Music Playing';
         });
-      });
+      }
     }
 
-    // Try to play after 1 second delay
-    setTimeout(playMusic, 1000);
-    
-    // Also try to play when the window gets focus (with delay)
-    window.addEventListener('focus', function() {
-      if (music.paused) {
-        setTimeout(playMusic, 1000);
+    // Handle button click
+    musicBtn.addEventListener('click', function() {
+      if (!isPlaying) {
+        initAudio();
+      } else {
+        music.pause();
+        isPlaying = false;
+        musicBtn.innerHTML = '🔇 Enable Music';
       }
     });
-  });
+
+    // Try to start on any interaction
+    document.addEventListener('click', initAudio, { once: true });
+    document.addEventListener('touchstart', initAudio, { once: true });
+    document.addEventListener('keydown', initAudio, { once: true });
+  };
 </script>
   
 </body>
